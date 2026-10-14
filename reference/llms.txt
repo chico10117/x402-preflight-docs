@@ -18,7 +18,7 @@ Compatibility alias (same audit, price, and report; not a fourth capability):
 
 GET https://x402.chikocorp.com/api/x402/preflight/audit?resource_url=https%3A%2F%2Fexample.com%2Fapi%2Fresource&method=GET&expected_network=eip155%3A8453&max_price_usd=1
 
-The GET alias requires resource_url in the query string and accepts optional method (GET or HEAD only), expected_network, and max_price_usd parameters. It rejects duplicate, unknown, empty, unsafe, or non-scalar query parameters before serving an x402 challenge.
+The GET alias requires resource_url in the query string and accepts optional method (GET or HEAD only), expected_network, and max_price_usd parameters. A request with no query parameters at all is an unauthenticated discovery probe and reaches the x402 challenge; duplicate, unknown, empty-valued, unsafe, or non-scalar query parameters are rejected before the challenge.
 
 Input example:
 
@@ -52,3 +52,5 @@ Legacy wallet readiness, market data, weather, repository snapshot, marketplace,
 - Index of all notes: https://x402.chikocorp.com/docs/
 
 Each note states what a read-only check observes, how to reproduce it, and what it does not prove.
+
+The same notes as Markdown, for review and citation: https://github.com/chico10117/x402-preflight-docs
