@@ -1,0 +1,54 @@
+# x402 Preflight
+
+Launch diagnostics for x402 API developers. Check your endpoint's payment configuration, discovery metadata, schemas, and compatibility signals, with evidence and fix recommendations. Read-only checks: no test purchase, settlement or paid-delivery verification, code changes, or guaranteed marketplace indexing. Buyer-side inspection remains available.
+
+Check your x402 endpoint before launch or while debugging payment configuration and client compatibility. Buyers may also use the same read-only checks before authorizing a purchase. These Preflight capabilities never sign a payment, forward buyer credentials, or spend USDC on the target.
+
+## Canonical capabilities
+
+1. inspect_x402_endpoint — POST https://x402.chikocorp.com/api/preflight/inspect — free
+2. audit_x402_endpoint — POST https://x402.chikocorp.com/api/x402/preflight/audit — x402 $0.05
+3. order_x402_remediation — POST https://x402.chikocorp.com/api/x402/preflight/remediation — x402 $5
+
+The free check returns a live challenge and comparison policy decision. The technical audit returns deeper evidence immediately. The diagnostic purchase returns a durable order receipt; authenticated JSON/Markdown findings and fix recommendations are delivered asynchronously, not in the receipt. No implementation or human consultation is included.
+
+max_price_usd is a caller-selected comparison policy for the target, not our service fee. A price-limit BLOCK does not establish that the integration is broken, and ALLOW is not launch certification.
+
+Compatibility alias (same audit, price, and report; not a fourth capability):
+
+GET https://x402.chikocorp.com/api/x402/preflight/audit?resource_url=https%3A%2F%2Fexample.com%2Fapi%2Fresource&method=GET&expected_network=eip155%3A8453&max_price_usd=1
+
+The GET alias requires resource_url in the query string and accepts optional method (GET or HEAD only), expected_network, and max_price_usd parameters. It rejects duplicate, unknown, empty, unsafe, or non-scalar query parameters before serving an x402 challenge.
+
+Input example:
+
+{"resource_url":"https://example.com/api/resource","method":"GET","expected_network":"eip155:8453","max_price_usd":1}
+
+The live 402 challenge is authoritative for price, network, asset, receiver, and Bazaar extensions. Reports expire and do not guarantee future settlement or delivery.
+
+## Interfaces
+
+- OpenAPI: https://x402.chikocorp.com/openapi.json
+- MCP Streamable HTTP: https://x402.chikocorp.com/mcp
+- x402 metadata: https://x402.chikocorp.com/.well-known/x402.json
+- Agent metadata: https://x402.chikocorp.com/.well-known/agent.json
+- Manifest: https://x402.chikocorp.com/manifest
+
+## Labs and compatibility
+
+Separate opt-in product: x402 Launch Verification. Contract: https://x402.chikocorp.com/verification/openapi.json. Page: https://x402.chikocorp.com/verification.html. Disabled by default; explicit consent and a spending cap are required for service-wallet purchases. Not part of the read-only MCP tools.
+
+Legacy wallet readiness, market data, weather, repository snapshot, marketplace, webhook, and signer-helper routes remain available but are not primary agent capabilities. See the manifest's labs section.
+
+## Documentation (short, checkable answers)
+
+- How to check an x402 payment configuration before launch: https://x402.chikocorp.com/docs/how-to-check-x402-payment-configuration.html
+- x402 resource listed in the catalogue but buyers cannot find or pay it: https://x402.chikocorp.com/docs/x402-listing-not-showing-in-bazaar.html
+- x402 endpoint returns 200 without a payment challenge: https://x402.chikocorp.com/docs/x402-endpoint-returns-200-without-charging.html
+- Discovery requirements for x402 catalogues (OpenAPI + x-payment-info): https://x402.chikocorp.com/docs/x402scan-discovery-requirements.html
+- What is x402?: https://x402.chikocorp.com/docs/what-is-x402.html
+- How to add x402 to an Express API: https://x402.chikocorp.com/docs/how-to-add-x402-to-express.html
+- x402 vs Stripe (per-call billing for APIs): https://x402.chikocorp.com/docs/x402-vs-stripe.html
+- Index of all notes: https://x402.chikocorp.com/docs/
+
+Each note states what a read-only check observes, how to reproduce it, and what it does not prove.
