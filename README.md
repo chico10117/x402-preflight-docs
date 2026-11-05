@@ -22,6 +22,20 @@ curl -s -X POST https://x402.chikocorp.com/api/preflight/inspect \
   -d '{"resource_url":"https://your-api.example.com/resource","method":"GET"}'
 ```
 
+## Machine-readable manifests
+
+Everything a registry, directory or agent needs to index this server without filling a form:
+
+| file | for |
+|---|---|
+| [server.json](server.json) | official MCP registry manifest (streamable HTTP remote) |
+| [glama.json](glama.json) | Glama maintainer claim |
+| [SKILL.md](SKILL.md) | agent skill: tools, inputs, prices and boundaries |
+| [gemini-extension.json](gemini-extension.json) | Gemini CLI extension pointing at `https://x402.chikocorp.com/mcp` |
+
+Live equivalents served by the service: [`/llms.txt`](https://x402.chikocorp.com/llms.txt),
+[`/mcp`](https://x402.chikocorp.com/mcp) and [`/.well-known/x402.json`](https://x402.chikocorp.com/.well-known/x402.json).
+
 ## Contents
 
 - [docs/](docs/README.md) — short answers: what x402 is, how to add it, and how to tell whether

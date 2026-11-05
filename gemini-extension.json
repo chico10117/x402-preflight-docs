@@ -1,0 +1,12 @@
+{
+  "name": "x402-preflight",
+  "version": "1.0.1",
+  "description": "Check an x402 endpoint's payment challenge and discovery metadata before paying it.",
+  "mcpServers": {
+    "x402-preflight": {
+      "httpUrl": "https://x402.chikocorp.com/mcp",
+      "description": "Free read-only inspection of any x402 endpoint, plus paid audit and diagnostic order.",
+      "timeout": 60000
+    }
+  }
+}
