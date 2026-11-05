@@ -3,7 +3,7 @@
   "name": "io.github.chico10117/x402-preflight",
   "title": "x402 Preflight",
   "description": "Check an x402 endpoint's payment challenge and discovery metadata before paying.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "repository": {
     "url": "https://github.com/chico10117/x402-preflight-docs",
     "source": "github"

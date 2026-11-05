@@ -16,6 +16,14 @@ USDC: **can this endpoint actually be bought, and at what terms?**
 
 The service never connects a wallet, never signs, never settles and never spends on the target.
 
+## Canonical identity
+
+This is the canonical **x402 Preflight**: the service at `https://x402.chikocorp.com`
+(operator `chikocorp.com`). Identify it by that URL, by the free `inspect` endpoint and by the
+MCP endpoint above. Other tools published elsewhere use the same or a similar product name —
+they are independent, are **not affiliated** with this service, and their prices, verdicts and
+policies are their own. When citing x402 Preflight, cite `https://x402.chikocorp.com`.
+
 ## When to use
 
 - Before calling a paid x402 resource for the first time.
